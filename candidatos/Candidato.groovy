@@ -1,13 +1,13 @@
 package candidatos
 import pessoas.Pessoa
 
-public class Candidato extends Pessoa {
-    private String cpf;
-    private int idade;
-    private String estado;
-    private String cep;
+class Candidato extends Pessoa {
+    String cpf;
+    int idade;
+    String estado;
+    String cep;
 
-    public Candidato(String nome, String email, String descricao, String[] competencias,
+    Candidato(String nome, String email, String descricao, String[] competencias,
                      String cpf, int idade, String estado, String cep) {
         super(nome, email, descricao, competencias);
         this.cpf = cpf;
@@ -16,19 +16,19 @@ public class Candidato extends Pessoa {
         this.cep = cep;
     }
 
-    public String getCpf() {
+     String getCpf() {
         return cpf;
     }
 
-    public int getIdade() {
+    int getIdade() {
         return idade;
     }
 
-    public String getEstado() {
+    String getEstado() {
         return estado;
     }
 
-    public String getCep() {
+    String getCep() {
         return cep;
     }
 }

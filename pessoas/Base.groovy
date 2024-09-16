@@ -1,10 +1,8 @@
 package pessoas
 
 interface Base {
-    public interface Pessoa {
-        String getNome();
-        String getEmail();
-        String getDescricao();
-        String[] getCompetencias();
-    }
+    String getNome()
+    String getEmail()
+    String getDescricao()
+    List<String> getCompetencias()
 }

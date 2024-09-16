@@ -1,36 +1,32 @@
 package pessoas
 
-public abstract class Pessoa implements Base {
-    protected String nome;
-    protected String email;
-    protected String descricao;
-    protected String[] competencias;
+abstract class Pessoa implements Base {
+    String nome;
+    String email;
+    String descricao;
+    List<String> competencias
 
-    public Pessoa(String nome, String email, String descricao, String[] competencias) {
+    Pessoa(String nome, String email, String descricao, List<String> competencias) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
         this.competencias = competencias;
     }
 
-    @Override
-    public String getNome() {
-        return nome;
+    String getNome() {
+        return nome
     }
 
-    @Override
-    public String getEmail() {
-        return email;
+    String getEmail() {
+        return email
     }
 
-    @Override
-    public String getDescricao() {
-        return descricao;
+    String getDescricao() {
+        return descricao
     }
 
-    @Override
-    public String[] getCompetencias() {
-        return competencias;
+    List<String> getCompetencias() {
+        return competencias
     }
 }
 
