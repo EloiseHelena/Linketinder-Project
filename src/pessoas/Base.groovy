@@ -1,4 +1,4 @@
-package pessoas
+package src.pessoas
 
 interface Base {
     String getNome()

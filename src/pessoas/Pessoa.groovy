@@ -1,4 +1,4 @@
-package pessoas
+package src.pessoas
 
 abstract class Pessoa implements Base {
     String nome;

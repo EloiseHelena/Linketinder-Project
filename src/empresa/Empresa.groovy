@@ -1,5 +1,5 @@
-package empresas
-import pessoas.Pessoa
+package src.empresa
+import src.pessoas.Pessoa
 
 class Empresa extends Pessoa {
     String cnpj
@@ -31,4 +31,7 @@ class Empresa extends Pessoa {
     String getCep() {
         return cep
     }
+
 }
+
+

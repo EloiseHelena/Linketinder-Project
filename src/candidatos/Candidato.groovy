@@ -1,5 +1,5 @@
-package candidatos
-import pessoas.Pessoa
+package src.candidatos
+import src.pessoas.Pessoa
 
 class Candidato extends Pessoa {
     String cpf;
@@ -7,7 +7,7 @@ class Candidato extends Pessoa {
     String estado;
     String cep;
 
-    Candidato(String nome, String email, String descricao, String[] competencias,
+    Candidato(String nome, String email, String descricao, List<String> competencias,
                      String cpf, int idade, String estado, String cep) {
         super(nome, email, descricao, competencias);
         this.cpf = cpf;
@@ -31,4 +31,11 @@ class Candidato extends Pessoa {
     String getCep() {
         return cep;
     }
+
+
 }
+
+
+
+
+
