@@ -4,42 +4,46 @@ import src.candidatos.Candidato
 import src.empresa.Empresa
 
 def menu(candidatos, empresas) {
-    Scanner scanner = new Scanner(System.in)
-    println "Bem-vindo ao Linketinder!"
-    println "Escolha uma opção:"
-    println "1. Listar todos os candidatos"
-    println "2. Listar todas as empresas"
-    println "3. Cadastrar novo candidato"
-    println "4. Cadastrar nova empresa"
-    println "5. Exibir matches"
-    println "6. Sair"
+    while (true) {
+        Scanner scanner = new Scanner(System.in)
+        println "Bem-vindo ao Linketinder!"
+        println "Escolha uma opção:"
+        println "1. Listar todos os candidatos"
+        println "2. Listar todas as empresas"
+        println "3. Cadastrar novo candidato"
+        println "4. Cadastrar nova empresa"
+        println "5. Exibir matches"
+        println "6. Sair"
 
-    def option = scanner.nextInt()
+        def option = scanner.nextInt()
 
-    switch (option) {
-        case 1:
-            listarCandidatos(candidatos)
-            break
-        case 2:
-            listarEmpresas(empresas)
-            break
-        case 3:
-            cadastrarCandidato(candidatos)
-            break
-        case 4:
-            cadastrarEmpresa(empresas)
-            break
-        case 5:
-            exibirMatches(candidatos, empresas)
-            break
-        case 6:
-            println "Saindo..."
-            System.exit(0)
-        default:
-            println "Opção inválida, tente novamente."
-            menu(candidatos, empresas)
+        switch (option) {
+            case 1:
+                listarCandidatos(candidatos)
+                break
+            case 2:
+                listarEmpresas(empresas)
+                break
+            case 3:
+                cadastrarCandidato(candidatos)
+                salvarCandidatos(candidatos)
+                break
+            case 4:
+                cadastrarEmpresa(empresas)
+                salvarEmpresas(empresas)
+                break
+            case 5:
+                exibirMatches(candidatos, empresas)
+                break
+            case 6:
+                println "Saindo..."
+                return // Sai do loop e termina o programa
+            default:
+                println "Opção inválida, tente novamente."
+        }
     }
 }
+
 
 def listarCandidatos(candidatos) {
     println "Candidatos:"
@@ -165,6 +169,51 @@ def exibirMatches(candidatos, empresas) {
 
     menu(candidatos, empresas)
 }
+
+def carregarCandidatos() {
+    def candidatos = []
+    def arquivo = new File('candidatos.txt')
+    if (arquivo.exists()) {
+        arquivo.eachLine { linha ->
+            def dados = linha.split(',')
+            def competencias = dados[3].split(';')
+            candidatos << new Candidato(dados[0], dados[1], dados[2], competencias, dados[4], Integer.parseInt(dados[5]), dados[6], dados[7])
+        }
+    }
+    return candidatos
+}
+
+def carregarEmpresas() {
+    def empresas = []
+    def arquivo = new File('empresas.txt')
+    if (arquivo.exists()) {
+        arquivo.eachLine { linha ->
+            def dados = linha.split(',')
+            def competencias = dados[3].split(';')
+            empresas << new Empresa(dados[0], dados[1], dados[2], competencias, dados[4], dados[5], dados[6], dados[7])
+        }
+    }
+    return empresas
+}
+
+def salvarCandidatos(candidatos) {
+    def arquivo = new File('candidatos.txt')
+    arquivo.withWriter { writer ->
+        candidatos.each { candidato ->
+            writer.writeLine("\${candidato.nome},\${candidato.email},\${candidato.descricao},\${candidato.competencias.join(';')},\${candidato.cpf},\${candidato.idade},\${candidato.estado},\${candidato.cep}")
+        }
+    }
+}
+
+def salvarEmpresas(empresas) {
+    def arquivo = new File('empresas.txt')
+    arquivo.withWriter { writer ->
+        empresas.each { empresa ->
+            writer.writeLine("\${empresa.nome},\${empresa.email},\${empresa.descricao},\${empresa.competencias.join(';')},\${empresa.cnpj},\${empresa.pais},\${empresa.estado},\${empresa.cep}")
+        }
+    }
+}
+
 
 
 def candidatos = [
