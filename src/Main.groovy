@@ -134,6 +134,38 @@ def cadastrarEmpresa(empresas) {
     menu(empresas)
 }
 
+def exibirMatches(candidatos, empresas) {
+    Scanner scanner = new Scanner(System.in)
+
+    println "Digite o nome do candidato que deseja curtir uma empresa:"
+    String nomeCandidato = scanner.nextLine()
+    Candidato candidato = candidatos.find { it.nome == nomeCandidato }
+
+    if (candidato) {
+        println "Digite o nome da empresa que deseja curtir:"
+        String nomeEmpresa = scanner.nextLine()
+        Empresa empresa = empresas.find { it.nome == nomeEmpresa }
+
+        if (empresa) {
+            println "Candidato ${candidato.nome} curtiu a empresa ${empresa.nome}"
+            println "Empresa ${empresa.nome} deseja curtir ${candidato.nome}? (s/n)"
+            String resposta = scanner.nextLine()
+
+            if (resposta.toLowerCase() == 's') {
+                println "Match! ${candidato.nome} e ${empresa.nome} podem agora se comunicar."
+            } else {
+                println "A empresa não curtiu o candidato."
+            }
+        } else {
+            println "Empresa não encontrada."
+        }
+    } else {
+        println "Candidato não encontrado."
+    }
+
+    menu(candidatos, empresas)
+}
+
 
 def candidatos = [
         new Candidato("João Silva", "joao@example.com", "Desenvolvedor Java", ["Java", "Spring"], "12345678900", 30, "SP", "01000-000"),
