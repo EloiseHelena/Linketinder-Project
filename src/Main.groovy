@@ -57,6 +57,45 @@ def listarEmpresas(empresas) {
     menu(empresas)
 }
 
+def cadastrarCandidato(candidatos) {
+    Scanner scanner = new Scanner(System.in)
+
+    println "Cadastro de Novo Candidato"
+
+    println "Digite o nome:"
+    String nome = scanner.nextLine()
+
+    println "Digite o email:"
+    String email = scanner.nextLine()
+
+    println "Digite a descrição:"
+    String descricao = scanner.nextLine()
+
+    println "Digite as competências (separadas por vírgula):"
+    String competenciasStr = scanner.nextLine()
+    List<String> competencias = competenciasStr.split(',').collect { it.trim() }
+
+    println "Digite o CPF:"
+    String cpf = scanner.nextLine()
+
+    println "Digite a idade:"
+    int idade = scanner.nextInt()
+    scanner.nextLine()
+
+    println "Digite o estado:"
+    String estado = scanner.nextLine()
+
+    println "Digite o CEP:"
+    String cep = scanner.nextLine()
+
+    def novoCandidato = new Candidato(nome, email, descricao, competencias, cpf, idade, estado, cep)
+    candidatos.add(novoCandidato)
+
+    println "Candidato cadastrado com sucesso!"
+
+    menu(candidatos)
+}
+
 
 def candidatos = [
         new Candidato("João Silva", "joao@example.com", "Desenvolvedor Java", ["Java", "Spring"], "12345678900", 30, "SP", "01000-000"),
