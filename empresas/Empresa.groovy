@@ -1,0 +1,4 @@
+package empresas
+
+class Empresa {
+}

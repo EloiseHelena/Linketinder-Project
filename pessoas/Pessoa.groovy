@@ -1,0 +1,4 @@
+package pessoas
+
+class Pessoa {
+}

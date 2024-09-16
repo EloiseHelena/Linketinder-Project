@@ -1,0 +1,4 @@
+package candidatos
+
+class Candidato {
+}
