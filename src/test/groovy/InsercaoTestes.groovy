@@ -19,7 +19,7 @@ class InsercaoTestes extends Specification {
         candidatos.size() == 1
 
         and: "O candidato inserido deve ser o correto"
-        candidatos[0].nome == "Pedro"
+        candidatos[0].nome == "Eloise"
         candidatos[0].cpf == "11122233344"
     }
 

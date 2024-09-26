@@ -1,4 +1,4 @@
-
+package src
 import candidatos.Candidato
 import empresa.Empresa
 
