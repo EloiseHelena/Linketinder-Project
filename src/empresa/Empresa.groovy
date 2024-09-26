@@ -1,5 +1,5 @@
-package src.empresa
-import src.pessoas.Pessoa
+package empresa
+import pessoas.Pessoa
 
 class Empresa extends Pessoa {
     String cnpj

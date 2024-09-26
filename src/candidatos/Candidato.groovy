@@ -1,5 +1,5 @@
-package src.candidatos
-import src.pessoas.Pessoa
+package candidatos
+import pessoas.Pessoa
 
 class Candidato extends Pessoa {
     String cpf;

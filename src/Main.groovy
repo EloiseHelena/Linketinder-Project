@@ -1,7 +1,6 @@
-package src
 
-import src.candidatos.Candidato
-import src.empresa.Empresa
+import candidatos.Candidato
+import empresa.Empresa
 
 def menu(candidatos, empresas) {
     while (true) {
