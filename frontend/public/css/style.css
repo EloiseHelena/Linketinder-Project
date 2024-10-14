@@ -1,0 +1,32 @@
+/* Animação para mudança de cor ao curtir */
+.curtido {
+    color: red;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .heart {
+    color: gray;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .heart:hover {
+    transform: scale(1.2);
+  }
+  
+  .heart.curtido {
+    color: red;
+  }
+
+
+  
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px yellow; }
+    50% { box-shadow: 0 0 20px yellow; }
+    100% { box-shadow: 0 0 5px yellow; }
+  }
+  
+  .match {
+    animation: glow 1s ease-in-out infinite;
+  }
+    

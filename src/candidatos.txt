@@ -1,0 +1,6 @@
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}
+${candidato.nome},${candidato.email},${candidato.descricao},${candidato.competencias.join(';')},${candidato.cpf},${candidato.idade},${candidato.estado},${candidato.cep}

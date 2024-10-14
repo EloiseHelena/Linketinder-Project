@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Vaga</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Editar Vaga</h2>
+    <form id="formEditarVaga">
+        <label for="titulo">Título da Vaga:</label>
+        <input type="text" id="titulo" name="titulo">
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao"></textarea>
+
+        <label for="competencias">Competências Necessárias:</label>
+        <input type="text" id="competencias" name="competencias">
+
+        <button type="button" onclick="salvarEdicaoVaga()">Salvar</button>
+    </form>
+
+    <script src="/frontend/dist/vagas.js"></script>
+</body>
+</html>
