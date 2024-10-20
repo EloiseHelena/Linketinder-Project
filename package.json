@@ -1,0 +1,32 @@
+{
+  "name": "linketinder-project",
+  "version": "1.0.0",
+  "description": "Linketinder-Project",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "tsc && node dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EloiseHelena/Linketinder-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EloiseHelena/Linketinder-Project/issues"
+  },
+  "homepage": "https://github.com/EloiseHelena/Linketinder-Project#readme",
+  "dependencies": {
+  "pg": "^8.7.1"
+  },
+  "devDependencies": {
+  "@types/pg": "^8.6.6",
+  "typescript": "^4.5.4"
+  }
+
+}

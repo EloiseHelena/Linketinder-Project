@@ -41,8 +41,12 @@ function criarGraficoCompetencias(candidato, vaga) {
         },
         options: {
             scales: {
-                x: { beginAtZero: true },
-                y: { beginAtZero: true }
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
             }
         }
     });

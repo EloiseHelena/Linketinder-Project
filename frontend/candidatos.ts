@@ -49,6 +49,7 @@ function criarGraficoCompetencias(candidato: Candidato, vaga: Vaga) {
   const competenciasComuns = candidato.competencias.filter(c => vaga.competenciasNecessarias.includes(c));
   const competenciasNaoComuns = candidato.competencias.filter(c => !vaga.competenciasNecessarias.includes(c));
 
+
   new Chart(ctx, {
     type: 'bar',
     data: {
@@ -63,11 +64,17 @@ function criarGraficoCompetencias(candidato: Candidato, vaga: Vaga) {
     },
     options: {
       scales: {
-        x: { beginAtZero: true },
-        y: { beginAtZero: true }
+        x: {
+          beginAtZero: true
+        },
+        y: {
+          beginAtZero: true
+        }
       }
     }
   });
+  
+  
 }
 
 
