@@ -1,52 +1,38 @@
-function validarCPF(cpf: string): boolean {
-  const regexCPF = /^\d{11}$/;
-  return regexCPF.test(cpf);
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const cadastroForm = document.getElementById('cadastroCandidatoForm') as HTMLFormElement;
 
-function validarEmail(email: string): boolean {
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regexEmail.test(email);
-}
+  cadastroForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-function validarSenha(senha: string): boolean {
-  const regexSenha = /^.{8,}$/; 
-  return regexSenha.test(senha);
-}
+    const nome = (document.getElementById('nome') as HTMLInputElement).value;
+    const sobrenome = (document.getElementById('sobrenome') as HTMLInputElement).value;
+    const dataNascimento = (document.getElementById('dataNascimento') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const cpf = (document.getElementById('cpf') as HTMLInputElement).value;
+    const pais = (document.getElementById('pais') as HTMLInputElement).value;
+    const cep = (document.getElementById('cep') as HTMLInputElement).value;
+    const descricao = (document.getElementById('descricao') as HTMLInputElement).value;
+    const senha = (document.getElementById('senha') as HTMLInputElement).value;
 
-const formCandidato = document.getElementById('cadastroCandidatoForm') as HTMLFormElement;
+    try {
+      const response = await fetch('/api/cadastro/candidato', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nome, sobrenome, dataNascimento, email, cpf, pais, cep, descricao, senha }),
+      });
 
-formCandidato.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const nome = (document.getElementById('nome') as HTMLInputElement).value;
-  const cpf = (document.getElementById('cpf') as HTMLInputElement).value;
-  const email = (document.getElementById('email') as HTMLInputElement).value;
-  const dataNascimento = (document.getElementById('dataNascimento') as HTMLInputElement).value;
-  const endereco = (document.getElementById('endereco') as HTMLInputElement).value;
-  const descricao = (document.getElementById('descricao') as HTMLTextAreaElement).value;
-  const competencias = (document.getElementById('competencias') as HTMLInputElement).value.split(',');
-  const senha = (document.getElementById('senha') as HTMLInputElement).value;
-
-  if (!validarCPF(cpf)) {
-    alert('CPF inválido. Deve conter exatamente 11 dígitos.');
-    return;
-  }
-
-  if (!validarEmail(email)) {
-    alert('Email inválido.');
-    return;
-  }
-
-  if (!validarSenha(senha)) {
-    alert('A senha deve ter no mínimo 8 caracteres.');
-    return;
-  }
-
-  const candidato = { nome, cpf, email, dataNascimento, endereco, descricao, competencias, senha };
-  const candidatos = JSON.parse(localStorage.getItem('candidatos') || '[]');
-  candidatos.push(candidato);
-
-  localStorage.setItem('candidatos', JSON.stringify(candidatos));
-  alert('Candidato cadastrado com sucesso!');
-  window.location.href = '/frontend/public/index.html';
+      const result = await response.json();
+      if (result.status === 'sucesso') {
+        alert('Cadastro realizado com sucesso!');
+        window.location.href = '/frontend/public/login.html';
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      alert('Erro ao tentar realizar o cadastro.');
+      console.error('Erro:', error);
+    }
+  });
 });

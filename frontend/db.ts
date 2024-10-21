@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 
 const client = new Client({
-  user: 'linketinder_user',
+  user: 'postgres',
   host: 'localhost',
   database: 'linketinder_db',
   password: 'acelera',

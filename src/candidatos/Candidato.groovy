@@ -1,41 +1,31 @@
 package candidatos
-import pessoas.Pessoa
+import javax.persistence.*
 
-class Candidato extends Pessoa {
-    String cpf;
-    int idade;
-    String estado;
-    String cep;
+@Entity
+class Candidato {
 
-    Candidato(String nome, String email, String descricao, List<String> competencias,
-                     String cpf, int idade, String estado, String cep) {
-        super(nome, email, descricao, competencias);
-        this.cpf = cpf;
-        this.idade = idade;
-        this.estado = estado;
-        this.cep = cep;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id
+
+    String nome
+    String sobrenome
+    String dataNascimento
+    String email
+    String cpf
+    String pais
+    String cep
+    String descricao
+
+
+    Candidato(String nome, String sobrenome, String dataNascimento, String email, String cpf, String pais, String cep, String descricao) {
+        this.nome = nome
+        this.sobrenome = sobrenome
+        this.dataNascimento = dataNascimento
+        this.email = email
+        this.cpf = cpf
+        this.pais = pais
+        this.cep = cep
+        this.descricao = descricao
     }
-
-     String getCpf() {
-        return cpf;
-    }
-
-    int getIdade() {
-        return idade;
-    }
-
-    String getEstado() {
-        return estado;
-    }
-
-    String getCep() {
-        return cep;
-    }
-
-
 }
-
-
-
-
-
