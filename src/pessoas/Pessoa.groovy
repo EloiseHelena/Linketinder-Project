@@ -6,7 +6,7 @@ abstract class Pessoa implements Base {
     String descricao;
     List<String> competencias
 
-    Pessoa(String nome, String email, String descricao, List<String> competencias) {
+    public Pessoa(String nome, String email, String descricao, List<String> competencias) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;

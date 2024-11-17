@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'java'
+    id 'application'
 }
 
 repositories {
@@ -18,6 +19,14 @@ sourceSets {
             srcDirs = ['src/test/groovy']
         }
     }
+}
+
+run {
+    mainClass='endereco/'
+}
+
+run {
+    standardInput = System.in
 }
 
 dependencies {

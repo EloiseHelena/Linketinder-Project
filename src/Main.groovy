@@ -4,6 +4,8 @@ import candidatos.Candidato
 import empresa.Empresa
 import dao.CandidatoDAO
 import dao.EmpresaDAO
+import java.util.ArrayList;
+import java.util.List;
 
 class Main {
     static CandidatoDAO candidatoDAO = new CandidatoDAO()
@@ -20,7 +22,7 @@ class Main {
             println "5. Exibir matches"
             println "6. Sair"
 
-            def option = new Scanner(System.in).nextInt()
+            Scanner option = new Scanner(System.in).nextInt()
             switch (option) {
                 case 1:
                     listarEntidades(candidatoDAO.listarTodos(), "Candidatos")
@@ -29,11 +31,11 @@ class Main {
                     listarEntidades(empresaDAO.listarTodas(), "Empresas")
                     break
                 case 3:
-                    def novoCandidato = cadastrarCandidato()
-                    candidatoDAO.inserirCandidato(novoCandidato)
+                    Candidato novoCandidato = cadastrarCandidato()
+                    candidatoDAO.cadastrarCandidato(novoCandidato)
                     break
                 case 4:
-                    def novaEmpresa = cadastrarEmpresa()
+                    Empresa novaEmpresa = cadastrarEmpresa()
                     empresaDAO.inserirEmpresa(novaEmpresa)
                     break
                 case 5:
@@ -48,7 +50,7 @@ class Main {
         }
     }
 
-    def listarEntidades(List entidades, String tipo) {
+    static void listarEntidades(List entidades, String tipo) {
         println "$tipo:"
         entidades.each { entidade ->
             println entidade.toString()
@@ -56,40 +58,53 @@ class Main {
     }
 
 
-    def cadastrarCandidato() {
+    static Candidato cadastrarCandidato() {
         println "Cadastro de Novo Candidato"
-        def scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in)
 
-        def nome = lerInput(scanner, "Digite o nome:")
-        def sobrenome = lerInput(scanner, "Digite o sobrenome:")
-        def email = lerInput(scanner, "Digite o email:")
-        def descricao = lerInput(scanner, "Digite sua descrição:")
-        def cpf = lerInput(scanner, "Digite o CPF:")
-        def dataNascimento = lerInput(scanner, "Digite a data de nascimento (yyyy-MM-dd):")
-        def pais = lerInput(scanner, "Digite o país:")
-        def cep = lerInput(scanner, "Digite o CEP:")
+        String nome = lerInput(scanner, "Digite o nome:")
+        String sobrenome = lerInput(scanner, "Digite o sobrenome:")
+        String email = lerInput(scanner, "Digite o email:")
+        String descricao = lerInput(scanner, "Digite sua descrição:")
+        String cpf = lerInput(scanner, "Digite o CPF:")
+        String dataNascimento = lerInput(scanner, "Digite a data de nascimento (yyyy-MM-dd):")
+        String pais = lerInput(scanner, "Digite o país:")
+        String cep = lerInput(scanner, "Digite o CEP:")
+        // TODO
+        //  listar competencias (IMPLEMENTAR)
+        //  Imprimir competencias
+        //  String competencias = lerInput(scanner, "Digite suas competencias:")
+        //  Validar se na lista de competencias existe a competencia do usuário
+        //  Adicionar ao construtor do método Candidato a lista de Competencias
+
+
+
+
+        println(nome + sobrenome + dataNascimento + email + cpf + pais + cep + descricao)
 
         return new Candidato(nome, sobrenome, dataNascimento, email, cpf, pais, cep, descricao)
     }
 
 
-    def cadastrarEmpresa() {
+    static Empresa cadastrarEmpresa() {
         println "Cadastro de Nova Empresa"
-        def scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in)
 
-        def nome = lerInput(scanner, "Digite o nome da empresa:")
-        def email = lerInput(scanner, "Digite o email corporativo:")
-        def descricao = lerInput(scanner, "Digite a descrição:")
-        def cnpj = lerInput(scanner, "Digite o CNPJ:")
-        def pais = lerInput(scanner, "Digite o país:")
-        def estado = lerInput(scanner, "Digite o estado:")
-        def cep = lerInput(scanner, "Digite o CEP:")
+        String nome = lerInput(scanner, "Digite o nome da empresa:")
+        String email = lerInput(scanner, "Digite o email corporativo:")
+        String descricao = lerInput(scanner, "Digite a descrição:")
+        String cnpj = lerInput(scanner, "Digite o CNPJ:")
+        String pais = lerInput(scanner, "Digite o país:")
+        String estado = lerInput(scanner, "Digite o estado:")
+        String cep = lerInput(scanner, "Digite o CEP:")
 
-        return new Empresa(nome, email, descricao, cnpj, pais, estado, cep)
+        List<String> GAMBIARRA = new ArrayList<>();
+        GAMBIARRA.add("C");
+        return new Empresa(nome, email, descricao, GAMBIARRA, cnpj, pais, estado, cep)
     }
 
 
-    def lerInput(Scanner scanner, String mensagem) {
+    static String lerInput(Scanner scanner, String mensagem) {
         println mensagem
         return scanner.nextLine()
     }

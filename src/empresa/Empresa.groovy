@@ -7,7 +7,7 @@ class Empresa extends Pessoa {
     String estado
     String cep
 
-    Empresa(String nome, String email, String descricao, List<String> competencias,
+    public Empresa(String nome, String email, String descricao, List<String> competencias,
             String cnpj, String pais, String estado, String cep) {
         super(nome, email, descricao, competencias)
         this.cnpj = cnpj
@@ -30,6 +30,17 @@ class Empresa extends Pessoa {
 
     String getCep() {
         return cep
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa:\n" +
+                "nome= " + nome + '\n' +
+                "email= " + email + '\n' +
+                "descricao= " + descricao + '\n' +
+                "cnpj= " + cnpj + '\n' +
+                "pais= " + pais + '\n' +
+                "cep= " + cep + '\n'
     }
 
 }

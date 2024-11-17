@@ -8,7 +8,7 @@ class VagaDAO {
         def conn = DatabaseConnection.getConnection()
         def stmt = null
         try {
-            def sql = "INSERT INTO vagas (titulo, descricao, salario, requisitos, empresa_cnpj) VALUES (?, ?, ?, ?, ?)"
+            String sql = "INSERT INTO vagas (titulo, descricao, salario, requisitos, empresa_cnpj) VALUES (?, ?, ?, ?, ?)"
             stmt = conn.prepareStatement(sql)
 
             stmt.setString(1, vaga.titulo)

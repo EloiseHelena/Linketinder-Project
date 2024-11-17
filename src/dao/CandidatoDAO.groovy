@@ -1,6 +1,8 @@
 package dao
 import db.DatabaseConnection
 import candidatos.Candidato
+import empresa.Empresa
+
 import java.sql.SQLException
 
 class CandidatoDAO {
@@ -21,6 +23,7 @@ class CandidatoDAO {
             stmt.setString(8, candidato.descricao)
 
             int linhasAfetadas = stmt.executeUpdate()
+            // Com Id do canditato criado, criar um registro de candidatos_competencias relacionando o candidato com suas competencias
             if (linhasAfetadas > 0) {
                 println("Candidato inserido com sucesso.")
             }
@@ -30,6 +33,33 @@ class CandidatoDAO {
             if (stmt != null) stmt.close()
             if (conn != null) conn.close()
         }
+    }
+
+    public List<Candidato> listarTodos() {
+        List<Candidato> candidatos = new ArrayList<>();
+        def conn = DatabaseConnection.getConnection();
+        String sql = "SELECT id, nome, sobrenome, data_nascimento, email, cpf, pais, cep, descricao, senha FROM public.candidatos;"
+        def stmt = conn.prepareStatement(sql);
+
+        def rs = stmt.executeQuery();
+        while (rs.next()) {
+            Candidato candidato = new Candidato(
+                    rs.getString("nome"),
+                    rs.getString("sobrenome"),
+                    rs.getString("data_nascimento"),
+                    rs.getString("email"),
+                    rs.getString("cpf"),
+                    rs.getString("pais"),
+                    rs.getString("cep"),
+                    rs.getString("descricao")
+            );
+            candidatos.add(candidato);
+        }
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        return candidatos;
     }
 
     Candidato buscarCandidatoPorCpf(String cpf) {
@@ -57,7 +87,6 @@ class CandidatoDAO {
         conn.close()
         return candidato
     }
-
 
     void atualizarCandidato(Candidato candidato) {
         def conn = DatabaseConnection.getConnection()
@@ -90,7 +119,6 @@ class CandidatoDAO {
         conn.close()
         println("Candidato deletado com sucesso.")
     }
-
 }
 
 
