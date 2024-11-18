@@ -77,9 +77,6 @@ class Main {
         //  Validar se na lista de competencias existe a competencia do usuário
         //  Adicionar ao construtor do método Candidato a lista de Competencias
 
-
-
-
         println(nome + sobrenome + dataNascimento + email + cpf + pais + cep + descricao)
 
         return new Candidato(nome, sobrenome, dataNascimento, email, cpf, pais, cep, descricao)
