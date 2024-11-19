@@ -1,15 +1,16 @@
 package src
 
-import candidatos.Candidato
-import empresa.Empresa
-import dao.CandidatoDAO
-import dao.EmpresaDAO
-import java.util.ArrayList;
-import java.util.List;
+import models.Candidato
+import models.Empresa
+import services.CandidatoService
+import services.EmpresaService
+import services.CompetenciaService
 
 class Main {
-    static CandidatoDAO candidatoDAO = new CandidatoDAO()
-    static EmpresaDAO empresaDAO = new EmpresaDAO()
+
+    private static final CandidatoService candidatoService = new CandidatoService()
+    private static final EmpresaService empresaService = new EmpresaService()
+    private static final CompetenciaService competenciaService = new CompetenciaService()
 
     static void menu() {
         while (true) {
@@ -22,21 +23,23 @@ class Main {
             println "5. Exibir matches"
             println "6. Sair"
 
-            Scanner option = new Scanner(System.in).nextInt()
+            Scanner scanner = new Scanner(System.in)
+            int option = scanner.nextInt()
+
             switch (option) {
                 case 1:
-                    listarEntidades(candidatoDAO.listarTodos(), "Candidatos")
+                    listarEntidades(candidatoService.listarTodos(), "Candidatos")
                     break
                 case 2:
-                    listarEntidades(empresaDAO.listarTodas(), "Empresas")
+                    listarEntidades(empresaService.listarTodos(), "Empresas")
                     break
                 case 3:
                     Candidato novoCandidato = cadastrarCandidato()
-                    candidatoDAO.cadastrarCandidato(novoCandidato)
+                    candidatoService.cadastrarCandidato(novoCandidato)
                     break
                 case 4:
                     Empresa novaEmpresa = cadastrarEmpresa()
-                    empresaDAO.inserirEmpresa(novaEmpresa)
+                    empresaService.cadastrarEmpresa(novaEmpresa)
                     break
                 case 5:
                     exibirMatches()
@@ -57,7 +60,6 @@ class Main {
         }
     }
 
-
     static Candidato cadastrarCandidato() {
         println "Cadastro de Novo Candidato"
         Scanner scanner = new Scanner(System.in)
@@ -70,18 +72,10 @@ class Main {
         String dataNascimento = lerInput(scanner, "Digite a data de nascimento (yyyy-MM-dd):")
         String pais = lerInput(scanner, "Digite o país:")
         String cep = lerInput(scanner, "Digite o CEP:")
-        // TODO
-        //  listar competencias (IMPLEMENTAR)
-        //  Imprimir competencias
-        //  String competencias = lerInput(scanner, "Digite suas competencias:")
-        //  Validar se na lista de competencias existe a competencia do usuário
-        //  Adicionar ao construtor do método Candidato a lista de Competencias
+        List<String> competencias = listarCompetencias(scanner)
 
-        println(nome + sobrenome + dataNascimento + email + cpf + pais + cep + descricao)
-
-        return new Candidato(nome, sobrenome, dataNascimento, email, cpf, pais, cep, descricao)
+        return new Candidato(nome, sobrenome, dataNascimento, email, cpf, pais, cep, descricao, competencias)
     }
-
 
     static Empresa cadastrarEmpresa() {
         println "Cadastro de Nova Empresa"
@@ -95,27 +89,29 @@ class Main {
         String estado = lerInput(scanner, "Digite o estado:")
         String cep = lerInput(scanner, "Digite o CEP:")
 
-        List<String> GAMBIARRA = new ArrayList<>();
-        GAMBIARRA.add("C");
-        return new Empresa(nome, email, descricao, GAMBIARRA, cnpj, pais, estado, cep)
+        List<String> competencias = listarCompetencias(scanner)
+
+        return new Empresa(nome, email, descricao, competencias, cnpj, pais, estado, cep)
     }
 
+    static List<String> listarCompetencias(Scanner scanner) {
+        println "Digite as competências (separe por vírgulas):"
+        String competenciasInput = lerInput(scanner, "")
+        return competenciasInput.split(',').collect { it.trim() }
+    }
 
     static String lerInput(Scanner scanner, String mensagem) {
         println mensagem
         return scanner.nextLine()
     }
 
-
-    def exibirMatches() {
+    static void exibirMatches() {
         println "Funcionalidade de exibir matches ainda não implementada."
     }
 
     static void main(String[] args) {
         menu()
-
     }
-
 }
 
 

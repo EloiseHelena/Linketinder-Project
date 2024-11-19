@@ -1,6 +1,6 @@
 import spock.lang.Specification
-import candidatos.Candidato
-import empresa.Empresa
+import models.Candidato
+import models.Empresa
 
 
 class InsercaoTestes extends Specification {
