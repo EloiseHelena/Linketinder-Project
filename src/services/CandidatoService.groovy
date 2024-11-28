@@ -7,7 +7,7 @@ class CandidatoService {
 
     private final CandidatoDAO candidatoDAO = new CandidatoDAO()
 
-    void inserirCandidato(Candidato candidato) {
+    void cadastrarCandidato(Candidato candidato) {
         if (candidato.cpf == null || candidato.nome == null || candidato.email == null) {
             throw new IllegalArgumentException("CPF, Nome e E-mail são obrigatórios.")
         }

@@ -7,9 +7,9 @@ class CandidatoController {
 
     private final CandidatoDAO candidatoDAO = new CandidatoDAO()
 
-    void inserirCandidato(Candidato candidato) {
+    void cadastrarCandidato(Candidato candidato) {
         try {
-            candidatoDAO.inserirCandidato(candidato)
+            candidatoDAO.cadastrarCandidato(candidato)
         } catch (Exception e) {
             println("Erro ao inserir candidato: " + e.message)
         }
